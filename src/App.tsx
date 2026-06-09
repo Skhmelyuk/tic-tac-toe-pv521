@@ -1,20 +1,20 @@
 function App() {
   return (
-    <div class="game" id="game">
-      <h1 class="title">Гра христики-нулики</h1>
-      <div class="turn">Хід гравця X</div>
-      <div class="board">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
+    <div className="game" id="game">
+      <h1 className="title">Гра христики-нулики</h1>
+      <div className="turn">Хід гравця X</div>
+      <div className="board">
+        <div className="cell"></div>
+        <div className="cell"></div>
+        <div className="cell"></div>
+        <div className="cell"></div>
+        <div className="cell"></div>
+        <div className="cell"></div>
+        <div className="cell"></div>
+        <div className="cell"></div>
+        <div className="cell"></div>
       </div>
-      <button class="reset">Скинути гру</button>
+      <button className="reset">Скинути гру</button>
     </div>
   );
 }
