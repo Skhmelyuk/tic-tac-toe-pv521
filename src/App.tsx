@@ -5,10 +5,7 @@ function App() {
 
   return (
     <div className="game" id="game">
-      <TitleGame title="Гра хрести нулики" age={20} />
-      <TitleGame title="Гра хрести нулики 1" age={40} />
-      <TitleGame title="Гра хрести нулики 2" age={60} />
-      <TitleGame title="Гра хрести нулики 3" age={80} />
+      <TitleGame title="Гра хрести нулики" />
       <div className="turn">Хід гравця X</div>
       <div className="board">
         {cells.map((cell, index) => (
