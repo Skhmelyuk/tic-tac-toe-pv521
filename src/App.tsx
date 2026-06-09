@@ -1,7 +1,9 @@
+import { TitleGame } from "./components/TitleGame";
+
 function App() {
   return (
     <div className="game" id="game">
-      <h1 className="title">Гра христики-нулики</h1>
+      <TitleGame />
       <div className="turn">Хід гравця X</div>
       <div className="board">
         <div className="cell"></div>
