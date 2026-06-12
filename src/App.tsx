@@ -1,4 +1,5 @@
 import { Cell } from "./components/Cell";
+import { Counter } from "./components/Counter";
 import { Status } from "./components/Status";
 import { TitleGame } from "./components/TitleGame";
 import type { BoardState, Player } from "./types";
@@ -9,6 +10,7 @@ function App() {
 
   return (
     <div className="game" id="game">
+      <Counter />
       <TitleGame title="Гра хрести нулики" age={20} />
       <Status player={currentPlayer} />
       <div className="board">
