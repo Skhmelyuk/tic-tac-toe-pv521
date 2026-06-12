@@ -5,17 +5,15 @@ import { Text } from "./Text";
 export const Counter = () => {
   console.log("Render Counter");
 
-  let [count, setCount] = useState<number>(0);
-
-  const incrementCount = () => {
-    setCount(count + 1);
-
-    console.log(count);
-  };
+  const [count, setCount] = useState({
+    name: "Serhii",
+    email: "skhmelyuk@gmail.com",
+    count: 0,
+  });
 
   return (
     <div style={{ border: "1px solid red", padding: "20px" }}>
-      <TitleCounter count={count} />
+      <TitleCounter count={count.count} />
       <Text />
       <button
         style={{
@@ -23,7 +21,9 @@ export const Counter = () => {
           borderRadius: "10px",
           backgroundColor: "blue",
         }}
-        onClick={incrementCount}
+        onClick={() => {
+          setCount({ ...count, count: count.count + 1 });
+        }}
       >
         Add Count
       </button>
