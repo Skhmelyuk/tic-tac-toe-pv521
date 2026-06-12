@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { TitleCounter } from "./TitleCouner";
+import { Text } from "./Text";
 
 export const Counter = () => {
   console.log("Render Counter");
@@ -13,7 +15,8 @@ export const Counter = () => {
 
   return (
     <div style={{ border: "1px solid red", padding: "20px" }}>
-      <p style={{ fontSize: "24px", color: "green" }}>Counter: {count}</p>
+      <TitleCounter count={count} />
+      <Text />
       <button
         style={{
           padding: "16px",
