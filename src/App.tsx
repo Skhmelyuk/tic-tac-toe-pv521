@@ -13,7 +13,7 @@ const WINNING_COMBINATIONS: number[][] = [
   [2, 5, 8], // Стовпці (вертикальні лінії)
   [0, 4, 8],
   [2, 4, 6], // Діагоналі
-]
+];
 
 function checkWinner(currentBoard: BoardState): WinResult | null {
   for (const combination of WINNING_COMBINATIONS) {
@@ -33,35 +33,46 @@ function checkWinner(currentBoard: BoardState): WinResult | null {
 }
 
 function App() {
-  const [cells, setCells] = useState<BoardState>([null, "X", null, null, null, null, "O", "O", null]);
+  const [cells, setCells] = useState<BoardState>([
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+  ]);
   const [currentPlayer, setCurrentPlayer] = useState<Player>("X");
-  
+
   const winnerResult = checkWinner(cells);
   const winner = winnerResult ? winnerResult.winner : null;
   const winnerCombination = winnerResult ? winnerResult.combination : [];
-  const isDraw = !winner && cells.every( (cell)=>cell!=null );
-  
-  const handleSendClick = (index:number):void => {
+  const isDraw = !winner && cells.every((cell) => cell != null);
 
-    if (cells[index] || winner || isDraw){
-      return
+  const handleSendClick = (index: number): void => {
+    if (cells[index] || winner || isDraw) {
+      return;
     }
 
     const newCells = [...cells];
     newCells[index] = currentPlayer;
     setCells(newCells);
     setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
-
-  }  
+  };
 
   return (
     <div className="game" id="game">
       <TitleGame title="Гра хрести нулики" age={20} />
-      <Status player={currentPlayer} />
+      <Status player={currentPlayer} winner={winner} isDraw={isDraw} />
       <div className="board">
         {cells.map((cell, index) => (
-
-          <Cell value={cell} key={index} onCellClick={() => handleSendClick(index)} />
+          <Cell
+            value={cell}
+            key={index}
+            onCellClick={() => handleSendClick(index)}
+          />
         ))}
       </div>
       <button className="reset">Скинути гру !!!!!</button>
