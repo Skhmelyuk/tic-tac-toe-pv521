@@ -35,8 +35,24 @@ function checkWinner(currentBoard: BoardState): WinResult | null {
 function App() {
   const [cells, setCells] = useState<BoardState>([null, "X", null, null, null, null, "O", "O", null]);
   const [currentPlayer, setCurrentPlayer] = useState<Player>("X");
-  // const cells: BoardState = [null, "X", null, null, null, null, "O", "O", null];
-  // const currentPlayer: Player = "X";
+  
+  const winnerResult = checkWinner(cells);
+  const winner = winnerResult ? winnerResult.winner : null;
+  const winnerCombination = winnerResult ? winnerResult.combination : [];
+  const isDraw = !winner && cells.every( (cell)=>cell!=null );
+  
+  const handleSendClick = (index:number):void => {
+
+    if (cells[index] || winner || isDraw){
+      return
+    }
+
+    const newCells = [...cells];
+    newCells[index] = currentPlayer;
+    setCells(newCells);
+    setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
+
+  }  
 
   return (
     <div className="game" id="game">
@@ -44,7 +60,8 @@ function App() {
       <Status player={currentPlayer} />
       <div className="board">
         {cells.map((cell, index) => (
-          <Cell value={cell} key={index} />
+
+          <Cell value={cell} key={index} onCellClick={() => handleSendClick(index)} />
         ))}
       </div>
       <button className="reset">Скинути гру !!!!!</button>
