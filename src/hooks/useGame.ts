@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { BoardState, Player, WinResult } from "../types";
 
 const WINNING_COMBINATIONS: number[][] = [
@@ -32,11 +32,19 @@ function checkWinner(currentBoard: BoardState): WinResult | null {
 export default function useGame() {
   const [cells, setCells] = useState<BoardState>(Array(9).fill(null));
   const [currentPlayer, setCurrentPlayer] = useState<Player>("X");
-
+  const [seconds, setSeconds] = useState(0);
   const winnerResult = checkWinner(cells);
   const winner = winnerResult ? winnerResult.winner : null;
   const winnerCombination = winnerResult ? winnerResult.combination : [];
   const isDraw = !winner && cells.every((cell) => cell != null);
+
+  useEffect(() => {
+    if (winner || isDraw) return;
+    const timer = setInterval(() => {
+      setSeconds((prevSeconds) => prevSeconds + 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [winner, isDraw]);
 
   const handleCellClick = (index: number): void => {
     if (cells[index] || winner || isDraw) {
@@ -51,6 +59,7 @@ export default function useGame() {
 
   const handleReset = () => {
     setCells(Array(9).fill(null));
+    setSeconds(0);
     if (winner) {
       setCurrentPlayer(winner === "X" ? "O" : "X");
     }
@@ -64,5 +73,6 @@ export default function useGame() {
     isDraw,
     handleCellClick,
     handleReset,
+    seconds,
   };
 }
