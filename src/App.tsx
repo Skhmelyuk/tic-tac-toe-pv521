@@ -24,6 +24,7 @@ function App() {
             value={cell}
             key={index}
             onCellClick={() => handleCellClick(index)}
+            isWinner={winnerCombination.includes(index)}
           />
         ))}
       </div>
