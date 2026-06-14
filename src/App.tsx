@@ -1,11 +1,7 @@
-import { useState } from "react";
 import { Cell } from "./components/Cell";
 import { Status } from "./components/Status";
 import { TitleGame } from "./components/TitleGame";
-import type { BoardState, Player, WinResult } from "./types";
 import useGame from "./hooks/useGame";
-
-
 
 function App() {
   const {
@@ -14,8 +10,8 @@ function App() {
     winner,
     winnerCombination,
     isDraw,
-    handleSendClick,
-    handleReset
+    handleCellClick,
+    handleReset,
   } = useGame();
 
   return (
@@ -27,11 +23,13 @@ function App() {
           <Cell
             value={cell}
             key={index}
-            onCellClick={() => handleSendClick(index)}
+            onCellClick={() => handleCellClick(index)}
           />
         ))}
       </div>
-      <button className="reset" onClick={handleReset}>Скинути гру</button>
+      <button className="reset" onClick={handleReset}>
+        Скинути гру
+      </button>
     </div>
   );
 }

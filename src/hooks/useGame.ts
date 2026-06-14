@@ -29,40 +29,40 @@ function checkWinner(currentBoard: BoardState): WinResult | null {
   return null;
 }
 
-export default function useGame(){
-    const [cells, setCells] = useState<BoardState>(Array(9).fill(null));
-    const [currentPlayer, setCurrentPlayer] = useState<Player>("X");
+export default function useGame() {
+  const [cells, setCells] = useState<BoardState>(Array(9).fill(null));
+  const [currentPlayer, setCurrentPlayer] = useState<Player>("X");
 
-    const winnerResult = checkWinner(cells);
-    const winner = winnerResult ? winnerResult.winner : null;
-    const winnerCombination = winnerResult ? winnerResult.combination : [];
-    const isDraw = !winner && cells.every((cell) => cell != null);
+  const winnerResult = checkWinner(cells);
+  const winner = winnerResult ? winnerResult.winner : null;
+  const winnerCombination = winnerResult ? winnerResult.combination : [];
+  const isDraw = !winner && cells.every((cell) => cell != null);
 
-    const handleSendClick = (index: number): void => {
-      if (cells[index] || winner || isDraw) {
-        return;
-      }
-  
-      const newCells = [...cells];
-      newCells[index] = currentPlayer;
-      setCells(newCells);
-      setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
-    };
-  
-    const handleReset = () => {
-      setCells(Array(9).fill(null));
-      if (winner) {
-        setCurrentPlayer(winner === "X" ? "O":"X")
-      }
+  const handleCellClick = (index: number): void => {
+    if (cells[index] || winner || isDraw) {
+      return;
     }
 
-    return {
-        cells,
-        currentPlayer,
-        winner,
-        winnerCombination,
-        isDraw,
-        handleSendClick,
-        handleReset
+    const newCells = [...cells];
+    newCells[index] = currentPlayer;
+    setCells(newCells);
+    setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
+  };
+
+  const handleReset = () => {
+    setCells(Array(9).fill(null));
+    if (winner) {
+      setCurrentPlayer(winner === "X" ? "O" : "X");
     }
+  };
+
+  return {
+    cells,
+    currentPlayer,
+    winner,
+    winnerCombination,
+    isDraw,
+    handleCellClick,
+    handleReset,
+  };
 }
