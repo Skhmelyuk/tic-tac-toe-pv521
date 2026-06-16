@@ -1,8 +1,8 @@
-import { Cell } from "./components/Cell";
-import { Status } from "./components/Status";
-import { TitleGame } from "./components/TitleGame";
+import { Cell } from "./components/Cell/Cell";
+import { Status } from "./components/Status/Status";
+import { TitleGame } from "./components/TitleGame/TitleGame";
 import useGame from "./hooks/useGame";
-import { useState, useEffect } from "react";
+import styles from "./App.module.css";
 
 const formatTime = (timeInSeconds: number): string => {
   const mins = Math.floor(timeInSeconds / 60);
@@ -23,11 +23,11 @@ function App() {
   } = useGame();
 
   return (
-    <div className="game" id="game">
+    <div className={styles.game} id="game">
       <TitleGame title="Гра хрести нулики" age={20} />
       <Status player={currentPlayer} winner={winner} isDraw={isDraw} />
-      <div className = "timer"> Час гри: {formatTime(seconds)}</div>
-      <div className="board">
+      <div className={styles.timer}> Час гри: {formatTime(seconds)}</div>
+      <div className={styles.board}>
         {cells.map((cell, index) => (
           <Cell
             value={cell}
@@ -37,7 +37,7 @@ function App() {
           />
         ))}
       </div>
-      <button className="reset" onClick={handleReset}>
+      <button className={styles.reset} onClick={handleReset}>
         Скинути гру
       </button>
     </div>
@@ -45,3 +45,4 @@ function App() {
 }
 
 export default App;
+

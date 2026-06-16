@@ -1,3 +1,5 @@
+import styles from "./TitleGame.module.css";
+
 interface TitleGameProps {
   title: string;
   age?: number;
@@ -5,8 +7,9 @@ interface TitleGameProps {
 
 export function TitleGame({ title, age }: TitleGameProps) {
   return (
-    <h1 className="title">
+    <h1 className={styles.title}>
       {title} {age}
     </h1>
   );
 }
+
