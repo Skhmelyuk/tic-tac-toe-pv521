@@ -1,3 +1,5 @@
+import { Heading } from "@chakra-ui/react";
+
 interface TitleGameProps {
   title: string;
   age?: number;
@@ -5,8 +7,18 @@ interface TitleGameProps {
 
 export function TitleGame({ title, age }: TitleGameProps) {
   return (
-    <h1 className="title">
+    <Heading
+      as="h1"
+      size="xl"
+      mb={6}
+      textTransform="uppercase"
+      letterSpacing="2px"
+      bgGradient="linear(to-r, #2c3e50, #3498db)"
+      bgClip="text"
+      textAlign="center"
+    >
       {title} {age}
-    </h1>
+    </Heading>
   );
 }
+
