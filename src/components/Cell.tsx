@@ -7,7 +7,15 @@ interface CellProps {
 }
 
 export function Cell({ value, onCellClick, isWinner }: CellProps) {
-  const cellClass = `cell ${value === "X" ? "x-mark" : value === "O" ? "o-mark" : ""} ${isWinner ? "winner" : ""}`;
+  let cellClass = "game__cell";
+  if (value === "X") {
+    cellClass += " game__cell--x";
+  } else if (value === "O") {
+    cellClass += " game__cell--o";
+  }
+  if (isWinner) {
+    cellClass += " game__cell--winner";
+  }
 
   return (
     <div className={cellClass} onClick={onCellClick}>
@@ -15,3 +23,4 @@ export function Cell({ value, onCellClick, isWinner }: CellProps) {
     </div>
   );
 }
+

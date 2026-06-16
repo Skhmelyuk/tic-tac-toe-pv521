@@ -7,24 +7,29 @@ interface StatusProps {
 }
 
 export function Status({ player, winner, isDraw }: StatusProps) {
+  const getMarkClass = (mark: CellValue) => {
+    return mark === "X" ? "game__status-mark--x" : "game__status-mark--o";
+  };
+
   if (winner) {
     return (
-      <div className="turn">
+      <div className="game__status">
         Гравець{" "}
-        <span className={winner === "X" ? "x-mark" : "o-mark"}>{winner}</span>{" "}
+        <span className={getMarkClass(winner)}>{winner}</span>{" "}
         переміг!
       </div>
     );
   }
 
   if (isDraw) {
-    return <div className="turn">Нічия!</div>;
+    return <div className="game__status">Нічия!</div>;
   }
 
   return (
-    <div className="turn">
+    <div className="game__status">
       Хід гравця{" "}
-      <span className={player === "X" ? "x-mark" : "o-mark"}>{player}</span>
+      <span className={getMarkClass(player)}>{player}</span>
     </div>
   );
 }
+

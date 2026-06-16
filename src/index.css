@@ -17,7 +17,7 @@ body {
   text-align: center;
 }
 
-h1 {
+.game__title {
   color: #2c3e50;
   margin-bottom: 20px;
   font-size: 2.5rem;
@@ -30,7 +30,7 @@ h1 {
   padding-bottom: 10px;
 }
 
-.board {
+.game__board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
@@ -38,7 +38,7 @@ h1 {
   margin: 0 auto;
 }
 
-.cell {
+.game__cell {
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -54,22 +54,22 @@ h1 {
   font-weight: bold;
 }
 
-.x-mark {
-  color: #e74c3c;
-  text-shadow: 2px 2px 4px rgba(231, 76, 60, 0.2);
-}
-
-.o-mark {
-  color: #3498db;
-  text-shadow: 2px 2px 4px rgba(52, 152, 219, 0.2);
-}
-
-.cell:hover {
+.game__cell:hover {
   background-color: #f8f9fa;
   transform: scale(1.05);
 }
 
-.cell.winner {
+.game__cell--x {
+  color: #e74c3c;
+  text-shadow: 2px 2px 4px rgba(231, 76, 60, 0.2);
+}
+
+.game__cell--o {
+  color: #3498db;
+  text-shadow: 2px 2px 4px rgba(52, 152, 219, 0.2);
+}
+
+.game__cell--winner {
   background: linear-gradient(45deg, #2ecc71, #27ae60);
   color: white !important;
   animation: winPulse 1.5s ease-in-out infinite;
@@ -78,12 +78,12 @@ h1 {
   transform: scale(1.05);
 }
 
-.cell.winner:hover {
+.game__cell--winner:hover {
   transform: scale(1.05);
   background: linear-gradient(45deg, #27ae60, #2ecc71);
 }
 
-.turn {
+.game__status {
   margin-bottom: 20px;
   font-size: 1.4rem;
   color: #34495e;
@@ -96,20 +96,21 @@ h1 {
   transition: transform 0.3s ease;
 }
 
-.turn span.x-mark {
+.game__status:hover {
+  transform: translateY(-2px);
+}
+
+.game__status-mark--x {
   color: #e74c3c;
   font-weight: 700;
 }
-.turn span.o-mark {
+
+.game__status-mark--o {
   color: #007bff;
   font-weight: 700;
 }
 
-.turn:hover {
-  transform: translateY(-2px);
-}
-
-.reset {
+.game__reset-btn {
   margin-top: 20px;
   padding: 10px 20px;
   background-color: #007bff;
@@ -120,7 +121,7 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-.reset:hover {
+.game__reset-btn:hover {
   background-color: #0056b3;
 }
 
@@ -136,9 +137,10 @@ h1 {
   }
 }
 
-.timer {
+.game__timer {
   margin-bottom: 15px;
   font-size: 1.2rem;
   color: #2c3e50;
   font-weight: 500;
 }
+

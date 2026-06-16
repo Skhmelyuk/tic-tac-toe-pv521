@@ -5,8 +5,9 @@ interface TitleGameProps {
 
 export function TitleGame({ title, age }: TitleGameProps) {
   return (
-    <h1 className="title">
+    <h1 className="game__title">
       {title} {age}
     </h1>
   );
 }
+
