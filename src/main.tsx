@@ -3,27 +3,12 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 
-import { createContext } from "react";
-
-interface RegisterUser {
-  user: string;
-  email: string;
-}
-
-export const RegisterContext = createContext<RegisterUser | undefined>(
-  undefined,
-);
-
-export const RegisterContext2 = createContext<RegisterUser | undefined>(
-  undefined,
-);
+import { ThemeProvider } from "./context/ThemeContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RegisterContext.Provider
-      value={{ user: "Hmelyuk", email: "skhmelyuk1985@gmail.com" }}
-    >
+    <ThemeProvider>
       <App />
-    </RegisterContext.Provider>
+    </ThemeProvider>
   </StrictMode>,
 );
