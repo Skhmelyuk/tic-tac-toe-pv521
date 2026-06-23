@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { Cell } from "./components/Cell";
 import { Status } from "./components/Status";
 import { TitleGame } from "./components/TitleGame";
+import { useTheme } from "./context/ThemeContext";
 import useGame from "./hooks/useGame";
 
 const formatTime = (timeInSeconds: number): string => {
@@ -21,9 +23,22 @@ function App() {
     seconds,
   } = useGame();
 
+  const { theme, toggleTheme } = useTheme();
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [theme]);
+
   return (
-    <div className="game" id="game">
-      <TitleGame title="Гра хрести нулики" age={20} />
+    <div className={`game ${theme === "dark" ? "dark" : ""}`}>
+      <button className="theme-toggle-btn" onClick={toggleTheme}>
+        {theme === "light" ? "Темна тема 🌙" : "Світла тема ☀️"}
+      </button>
+      <TitleGame title="Гра хрести нулики" />
       <Status player={currentPlayer} winner={winner} isDraw={isDraw} />
       <div className="timer"> Час гри: {formatTime(seconds)}</div>
       <div className="board">
