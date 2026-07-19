@@ -22,6 +22,13 @@ describe("Тестування утиліти checkWinner (Unit)", () => {
 });
 
 describe("Тестування хука useGame (Unit)", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it("повинен повертати початковий стан гри, а саме стан поля, таймера і поточного гравця", () => {
     const { result } = renderHook(() => useGame());
 
@@ -31,5 +38,16 @@ describe("Тестування хука useGame (Unit)", () => {
     expect(result.current.seconds).toBe(0);
     expect(result.current.winnerCombination).toEqual([]);
     expect(result.current.isDraw).toBe(false);
+  });
+
+  it("оновлення ігрового поля та перемикання гравця при кліку", () => {
+    const { result } = renderHook(() => useGame());
+
+    act(() => {
+      result.current.handleCellClick(0);
+    });
+
+    expect(result.current.cells[0]).toBe("X");
+    expect(result.current.currentPlayer).toBe("O");
   });
 });
