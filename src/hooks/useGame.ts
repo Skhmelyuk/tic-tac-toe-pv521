@@ -12,7 +12,7 @@ const WINNING_COMBINATIONS: number[][] = [
   [2, 4, 6], // Діагоналі
 ];
 
-function checkWinner(currentBoard: BoardState): WinResult | null {
+export function checkWinner(currentBoard: BoardState): WinResult | null {
   for (const combination of WINNING_COMBINATIONS) {
     const [a, b, c] = combination;
     if (
