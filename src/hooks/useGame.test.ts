@@ -20,3 +20,16 @@ describe("Тестування утиліти checkWinner (Unit)", () => {
     });
   });
 });
+
+describe("Тестування хука useGame (Unit)", () => {
+  it("повинен повертати початковий стан гри, а саме стан поля, таймера і поточного гравця", () => {
+    const { result } = renderHook(() => useGame());
+
+    expect(result.current.cells).toEqual(Array(9).fill(null));
+    expect(result.current.currentPlayer).toBe("X");
+    expect(result.current.winner).toBeNull();
+    expect(result.current.seconds).toBe(0);
+    expect(result.current.winnerCombination).toEqual([]);
+    expect(result.current.isDraw).toBe(false);
+  });
+});
