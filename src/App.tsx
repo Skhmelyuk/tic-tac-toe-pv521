@@ -38,7 +38,7 @@ function App() {
       <button className="theme-toggle-btn" onClick={toggleTheme}>
         {theme === "light" ? "Темна тема 🌙" : "Світла тема ☀️"}
       </button>
-      <TitleGame title="Гра хрести нулики" />
+      <TitleGame title="Гра хрестики нулики" />
       <Status player={currentPlayer} winner={winner} isDraw={isDraw} />
       <div className="timer"> Час гри: {formatTime(seconds)}</div>
       <div className="board">
