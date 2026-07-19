@@ -50,4 +50,33 @@ describe("Тестування хука useGame (Unit)", () => {
     expect(result.current.cells[0]).toBe("X");
     expect(result.current.currentPlayer).toBe("O");
   });
+
+  it("повинен зупиняти таймер та оголошувати переможцiв при оголошеннi X?", () => {
+    const { result } = renderHook(() => useGame());
+
+    act(() => {
+      result.current.handleCellClick(0);
+    })
+    act(() => {
+      result.current.handleCellClick(3);
+    })
+    act(() => {
+      result.current.handleCellClick(1);
+    })
+    act(() => {
+      result.current.handleCellClick(4);
+    })
+    act(() => {
+      result.current.handleCellClick(2);
+    })
+
+    expect(result.current.winner).toBe("X");
+    expect(result.current.winnerCombination).toEqual([0,1,2]);
+
+    const timeAtWin = result.current.seconds;
+    act(()=>{
+      vi.advanceTimersByTime(2000);
+    })
+    expect(result.current.seconds).toBe(timeAtWin);
+  });
 });
